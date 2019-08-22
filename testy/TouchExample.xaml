@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:controls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+             BackgroundColor="Red"
+             x:Class="testy.TouchExample">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="StartAndExpand"
+
+                     VerticalOptions="FillAndExpand">
+            <cards:CarouselView ItemsSource="{Binding PageList}" 
+                                VerticalOptions="FillAndExpand">
+                <cards:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                            <ScrollView>
+                                <StackLayout>
+                                    <Label FontSize="32" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Text="{Binding Title}" />
+                                    
+                                    <Label Margin="10,20,10,0"
+                                           FontSize="Large" 
+                                           HorizontalOptions="Center"
+                                           Text="{Binding SubTitle}"
+                                           HorizontalTextAlignment="Center" />
+                                    
+                                    <ContentView Margin="10,20,10,0">
+                                        <Label FontSize="Medium" 
+                                               HorizontalTextAlignment="Center" >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                     <Span Text="{Binding LinkTitle}"
+                                                           TextColor="Blue">
+                                                         <Span.GestureRecognizers>
+                                                             <TapGestureRecognizer Command="{Binding LinkCommand}"
+                                                                           CommandParameter="{Binding LinkUri}" />
+                                                         </Span.GestureRecognizers>
+                                                     </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </ContentView>
+                                    
+                                </StackLayout>
+                            </ScrollView>
+                    </DataTemplate>
+                </cards:CarouselView.ItemTemplate>
+                    
+                <controls:IndicatorsControl />
+            </cards:CarouselView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
